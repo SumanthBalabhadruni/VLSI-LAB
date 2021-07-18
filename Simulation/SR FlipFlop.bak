@@ -1,0 +1,29 @@
+library ieee;
+use ieee.std_logic_1164.all;
+entity SR is
+port(	clk: in std_logic;
+	s: in std_logic;
+	r: in std_logic;
+	Q: out std_logic;
+	Qbar: out std_logic
+);
+end SR;
+
+architecture SR_flipflop of SR is
+begin
+	process(clk,s,r)
+		begin
+		if (clk='1' and clk' event) then 
+			if((s='0')and(r='1')) then
+				Q<=s;
+				Qbar<=r;
+			elsif((s='1')and(r='0')) then
+				Q<=s;
+				Qbar<=r;
+			elsif((s='1')and(r='1')) then
+				Q<='Z';
+				Qbar<='Z';
+			end if;
+		end if;
+	end process;
+end SR_flipflop;
